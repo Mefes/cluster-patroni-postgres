@@ -13,9 +13,9 @@ RUN yum -y install gcc
 RUN pip3 install psycopg2-binary
 RUN pip3 install patroni[etcd]
 
- RUN mkdir /data/patroni -p \
-    && chown postgres:postgres /data/patroni \
-    && chmod 700 /data/patroni 
+#  RUN mkdir /data/patroni -p \
+#     && chown postgres:postgres /data/patroni \
+#     && chmod 700 /data/patroni 
 
 COPY patroni.yml /etc/patroni.yml
 COPY patroni-run.sh ./entrypoint.sh

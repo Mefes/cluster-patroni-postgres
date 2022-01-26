@@ -12,7 +12,7 @@ restapi:
 
 etcd:
   #Provide host to do the initial discovery of the cluster topology:
-  host: 127.0.0.1:2379
+  host: 172.19.0.4:2379
   #Or use "hosts" to provide multiple endpoints
   #Could be a comma separated string:
   #hosts: host1:port1,host2:port2
@@ -44,8 +44,8 @@ bootstrap:
     - host replication all all md5
     - host all all all md5
     users:
-        admin:
-            password: admin
+        postgres:
+            password: postgres
             options:
                 - createrole
                 - createdb
@@ -58,7 +58,7 @@ bootstrap:
 
 postgresql:
     data_dir: /data/patroni
-    # bin_dir: /usr/lib/postgresql/11/bin
+    bin_dir: /usr/pgsql-14/bin
 #  config_dir:
     pgpass: /tmp/pgpass
     authentication:
