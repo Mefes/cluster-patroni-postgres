@@ -43,12 +43,12 @@ bootstrap:
     pg_hba:
     - host replication all all md5
     - host all all all md5
-    users:
-        postgres:
-            password: postgres
-            options:
-                - createrole
-                - createdb
+    # users:
+    #     postgres:
+    #         password: postgres
+    #         options:
+    #             - createrole
+    #             - createdb
 
 # zookeeper:
 #   hosts: 
@@ -61,16 +61,16 @@ postgresql:
     bin_dir: /usr/pgsql-14/bin
 #  config_dir:
     pgpass: /tmp/pgpass
-    authentication:
-        replication:
-            username: replicator
-            password: rep-pass
-        superuser:
-            username: postgres
-            password: postgres
-        rewind:  # Has no effect on postgres 10 and lower
-            username: rewind_user
-            password: rewind_password
+    # authentication:
+    #     replication:
+    #         username: replicator
+    #         password: rep-pass
+    #     superuser:
+    #         username: postgres
+    #         password: postgres
+    #     rewind:  # Has no effect on postgres 10 and lower
+    #         username: rewind_user
+    #         password: rewind_password
     # Server side kerberos spn
     #  krbsrvname: postgres
     parameters:

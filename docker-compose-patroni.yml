@@ -4,21 +4,6 @@ networks:
         external: true
 
 services:
-    # nginx:
-    #     image: patronitraining/patroni
-    #     networks: [ mdm-network ]
-    #     hostname: nginx
-    #     container_name: nginx
-    #     ports:
-    #         - "5000:5000"
-    #         - "5001:5001"
-    #     command: nginx
-    #     environment: &nginx_env
-    #         PATRONI_SCOPE: demo
-    #         PATRONI_ETCD_HOSTS: "'etcd:2379'"
-    #         PATRONI_RESTAPI_USERNAME: admin
-    #         PATRONI_RESTAPI_PASSWORD: admin
-    #         ETCDCTL_ENDPOINTS: http://etcd:2379
     patroni1:
         build: ./patroni
         networks:  
@@ -33,10 +18,10 @@ services:
         environment:
             PATRONI_API_CONNECT_PORT: 8091
             REPLICATION_NAME: replicator 
-            REPLICATION_PASS: replpass
+            REPLICATION_PASS: replicate
             SU_NAME: postgres
             SU_PASS: postgres
-            POSTGRES_APP_ROLE_PASS: appass
+            POSTGRES_APP_ROLE_PASS: admin
         deploy:
           replicas: 1
           placement:
@@ -55,10 +40,10 @@ services:
         environment:
             PATRONI_API_CONNECT_PORT: 8091
             REPLICATION_NAME: replicator 
-            REPLICATION_PASS: replpass
+            REPLICATION_PASS: replicate
             SU_NAME: postgres
             SU_PASS: postgres
-            POSTGRES_APP_ROLE_PASS: appass
+            POSTGRES_APP_ROLE_PASS: admin
         deploy:
           replicas: 1
           placement:
