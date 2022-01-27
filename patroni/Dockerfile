@@ -7,7 +7,7 @@ RUN yum -y upgrade; yum clean all
 RUN dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 RUN dnf -qy module disable postgresql
 RUN dnf install -y postgresql14-server
-RUN chown -R postgres.postgres /var/lib/pgsql
+RUN chown -R postgres:postgres /var/lib/pgsql
 RUN chmod +x /bin/postgresql-14-setup
 RUN dnf -y install python3 
 RUN pip3 install --upgrade pip
@@ -16,14 +16,15 @@ RUN pip3 install psycopg2-binary
 RUN pip3 install patroni[etcd]
 
  RUN mkdir /data/patroni -p \
-     && chown postgres.postgres /data/patroni \
+     && chown postgres:postgres /data/patroni \
      && chmod 777 /data/patroni 
 
 COPY patroni.yml /etc/patroni.yml
-RUN chown -v postgres.postgres /etc/patroni.yml
+RUN chown -v postgres:postgres /etc/patroni.yml
 COPY patroni-run.sh ./entrypoint.sh
-RUN chown -v postgres.postgres /entrypoint.sh
-
-USER postgres
+RUN chown -v postgres:postgres /entrypoint.sh
+RUN chown postgres:postgres /usr/local/bin/patroni \
+ && chmod 777 /usr/local/bin/patroni 
+USER postgres:postgres
 
 ENTRYPOINT ["bin/sh", "/entrypoint.sh"]

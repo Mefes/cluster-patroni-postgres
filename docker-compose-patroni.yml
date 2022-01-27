@@ -22,6 +22,7 @@ services:
             SU_NAME: postgres
             SU_PASS: postgres
             POSTGRES_APP_ROLE_PASS: admin
+            PGDATA: /var/lib/pgsql/14/data
         deploy:
           replicas: 1
           placement:
@@ -44,6 +45,7 @@ services:
             SU_NAME: postgres
             SU_PASS: postgres
             POSTGRES_APP_ROLE_PASS: admin
+            PGDATA: /var/lib/pgsql/14/data
         deploy:
           replicas: 1
           placement:

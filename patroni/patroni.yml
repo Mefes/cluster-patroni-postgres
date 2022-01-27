@@ -57,7 +57,7 @@ bootstrap:
 #       - zoo3:2181
 
 postgresql:
-    data_dir: /data/patroni
+    data_dir: /var/lib/pgsql/14/data
     bin_dir: /usr/pgsql-14/bin
 #  config_dir:
     pgpass: /tmp/pgpass
